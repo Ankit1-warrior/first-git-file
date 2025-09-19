@@ -3,82 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
+    <title>Ankit Kumar - CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .container1{
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
             display: flex;
-            padding: 10px;
-            background-color: rgb(85, 96, 146);
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            animation: fadeIn 1s ease-in-out;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            position: relative;
         }
-        .container2{
-            background-color: rgb(99, 99, 155);
-            padding: 10px;
-            width: 50%;
-            
+
+        .header-content {
+            flex: 2;
         }
-        .container3{
-            background-color: rgb(83, 83, 126);
-            background-image: url("C:\Users\Aditya\OneDrive\Desktop\memeee.png");
-            background-size: cover;
-            width: 50%;
-            padding: 10px;
-            margin-left: 10px;
-            
-            
+
+       
+        .profile-img {
+            flex: 1;
+            text-align: right;
+            position: relative;
         }
-        .main-content {
+
+        .profile-img-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 25%;
+            background: linear-gradient(45deg, #6a89cc, #4a69bd);
             display: flex;
-            width: 100%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        .container4 
-        {
-            background-color: rgb(184, 206, 135);
-            padding: 10px;
-            width: 65%;
-            height: 65%;
-            margin: 100px;
-            margin-right:10px;
+
+        .profile-img-placeholder:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+        /* Removed empty ruleset for .profile-img-placeholder::after */
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #b8e994;
+            margin-bottom: 15px;
+            animation: slideInFromRight 1s ease-out;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 5px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #b8e994;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #4a69bd;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(5px);
+        }
+
+        .experience-item h4, .education-item h4 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+
+        .date-location {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            margin: 5px 0;
+            font-style: italic;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        ul li:before {
+            content: "•";
+            color: #4a69bd;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background: linear-gradient(135deg, #4a69bd, #6a89cc);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            animation: bounce 1s;
+            animation-fill-mode: both;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(74, 105, 189, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .social-links a {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links a:hover {
+            color: #4a69bd;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            background: #2c3e50;
+            color: white;
+        }
+        .mix{
+            background-color: red;
+            border: #4a69bd;
+            border-style:solid dotted dashed double ;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { transform: translateY(-10px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-img {
+                margin-top: 20px;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .date-location {
+                flex-direction: column;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
-   
-    <div class="container1">
-    
-    <img src="" alt="Ankit Kumar" style="display: block; margin-right: auto; width: 150px; height: 150px; border-radius: 50%; padding: 1px 3px;">
-    <h1 style="text-align: center; padding: 20px; "> Ankit Kumar </h1>
-    </div>
-    <hr>
-    <div class="main-content">
-        <div class="container2">
-            <table border="3" style="font-size: 36px;"><th>Professional Profile</th>
-            </table>
-            <p style="font-size: 20px; text-align: justify; padding: 10px;">A highly motivated and skilled professional with a strong background<br> in web development and programming. Proficient in HTML, CSS,<br> JavaScript, and various frameworks. Adept at creating responsive and user-friendly<br> websites. Excellent problem-solving skills and a keen eye for detail. Committed to<br> continuous learning and staying updated with the latest industry trends.</p>
-            <table border="3" style="font-size: 36px;"><th>contact</th>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <div class="profile-img-placeholder">
+                    <img src="C:\Users\Aditya\OneDrive\Pictures\Screenshots\WhatsApp Image 2025-09-18 at 19.49.26_4b49d7bc.jpg" alt="Profile Photo">
+                </div>
+            </div>
+            <div class="header-content">
+                <h1>ANKIT KUMAR</h1>
+                <h2>BIG DATA & AI ANALYTICS</h2>
+                <div class="contact-info">
+                    <div><i class="fas fa-map-marker-alt"></i> Medawas On Road, Gurugram, 122101, India</div>
+                    <div><i class="fas fa-phone"></i> +919599229686</div>
+                    <div><i class="fas fa-envelope"></i> ankitk25564@gmail.com</div>
+                </div>
+            </div>
+        </header>
 
-            </table>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Google_Contacts_icon.svg/512px-Google_Contacts_icon.svg.png?20221102143815" alt="contact" style="display: block; margin-right: auto; width: 25px; height: 25px; border-radius: 50%; padding: 1px 3px;">
-            <p style="padding-left:30px; border:2px solid Tomato; font-size: 24px;">+91 8708735792</p>
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="email" style=" margin-right: auto; width: 25px; height: 25px;  padding: 1px 3px;">
-            <p style="padding-left:30px; border:2px solid Tomato; font-size: 24px;">familysoni959@gmail.com</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="instagram" style=" margin-right: auto; width: 25px; height: 25px;  padding: 1px 0px;">    
-            <p style="padding-left: 30px; border:2px solid Tomato; font-size: 24px;">Ankit Kumar</p>
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linkedin" style=" margin-right: auto; width: 25px; height: 25px;  padding: 1px 3px;">
-            <p style="padding-left: 30px; border:2px solid Tomato; font-size: 24px;">Ankit kumar</p>
-             <table border="3" style="font-size: 36px;"><th>education</th>
-            </table>
-            <p style="padding-left: 30px; border:2px solid Tomato; font-size: 24px;">Bachelor of Technology in Computer Science and Engineering<br>lovely professional university 2029</p>
+        <main>
+            <section class="section" id="about">
+                <h3><i class="fas fa-user"></i> ABOUT ME</h3>
+                <p>I am a data analytics student at Lovely Professional University (LPU) with a strong interest in artificial intelligence (AI) and Google tools. I enjoy working with data, finding patterns, and turning information into useful insights. I have experience with tools like Google BigQuery, Google Analytics, Looker Studio, and Google AI services to analyze data and create clear reports. My goal is to build a career where I can help businesses make better decisions using data and AI.</p>
+            </section>
+
+            <section class="section" id="experience">
+                <h3><i class="fas fa-briefcase"></i> WORK EXPERIENCE</h3>
+                <div class="experience-item">
+                    <h4>Google</h4>
+                    <div class="date-location">
+                        <span>Jan 2025 - Present</span>
+                        <span>Gurugram</span>
+                    </div>
+                    <p>BIG DATA & AI ANALYTICS</p>
+                    <ul>
+                        <li>Specialize in Big Data analytics and AI-driven insights simplification.</li>
+                        <li>Expert in extracting patterns from vast datasets to inform strategic decisions.</li>
+                        <li>Proficient with Google Cloud & BigQuery for robust data storage and analysis.</li>
+                        <li>Utilize Google Analytics (GA4) for comprehensive website and app analytics.</li>
+                        <li>Create intuitive dashboards and reports using Looker Studio.</li>
+                        <li>Employ Google AI tools for advanced language processing and predictive analytics.</li>
+                        <li>Enhance business intelligence by integrating analytics with Google's cutting-edge technologies.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" id="education">
+                <h3><i class="fas fa-graduation-cap"></i> EDUCATION</h3>
+                <div class="education-item">
+                    <h4>DATA ANALYTICS WITH AI</h4>
+                    <div class="date-location">
+                        <span>Lovely Professional University</span>
+                        <span>2029</span>
+                    </div>
+                    <ul>
+                        <li>Pursuing Data Analytics at Lovely Professional University, specializing in AI-driven data interpretation.</li>
+                        <li>Proficient in leveraging Google tools for comprehensive data analysis.</li>
+                        <li>Skilled in utilizing BigQuery for large-scale data querying.</li>
+                        <li>Experienced with Google Analytics for tracking and reporting website metrics.</li>
+                        <li>Adept at creating visual reports with Looker Studio.</li>
+                        <li>Competent in applying Google AI tools for pattern recognition.</li>
+                        <li>Committed to facilitating informed decision-making through data insights.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <h3><i class="fas fa-tools"></i> SKILLS</h3>
+                <div class="skills-container">
+                    <div class="skill">Data Modeling</div>
+                    <div class="skill">Spark Streaming</div>
+                    <div class="skill">Critical Thinking</div>
+                    <div class="skill">Full Stack Developer</div>
+                    <div class="skill">Problem Solving</div>
+                    <div class="skill">Data Warehousing</div>
+                    <div class="skill">Data Visualization</div>
+                    <div class="skill">Google BigQuery</div>
+                    <div class="skill">Google Analytics</div>
+                    <div class="skill">Looker Studio</div>
+                    <div class="skill">Google AI Tools</div>
+                </div>
+            </section>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Ankit1-warrior" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://twitter.com/" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="mailto:ankitk25564@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Ankit Kumar. All rights reserved.</p>
+        </footer>
+    </div>
+       <div>
+        <H1 class="mix"> HI BUDDY</H1>
+       </div>
+    <script>
+        // Animation for section appearance on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const skills = document.querySelectorAll('.skill');
             
-        </div>
-        <div class="container3">
-            <table border="3" style="font-size: 36px; color: aliceblue; "><th>skills</th>
-            </table>
-        </div>
-    </div>
-    <div class="container4">
-     <p> helo dj play song for me</p>
-    </div>
-
-   
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Function to handle scroll event
+            function checkVisibility() {
+                sections.forEach((section, index) => {
+                    if (isInViewport(section)) {
+                        setTimeout(() => {
+                            section.classList.add('visible');
+                        }, index * 200);
+                    }
+                });
+                
+                skills.forEach((skill, index) => {
+                    if (isInViewport(skill)) {
+                        setTimeout(() => {
+                            skill.style.animationDelay = `${index * 0.1}s`;
+                            skill.style.animation = 'bounce 1s';
+                            skill.style.opacity = 0.7;
+                        }, index * 100);
+                    }
+                });
+            }
+            
+            // Skill hover effect
+            skills.forEach(skill => {
+                skill.addEventListener('mouseover', function() {
+                    skills.forEach(s => {
+                        if (s !== skill) {
+                            s.style.opacity = "0.5";
+                        } else {
+                            s.style.opacity = "1";
+                        }
+                    });
+                });
+                
+                skill.addEventListener('mouseout', function() {
+                    skills.forEach(s => {
+                        s.style.opacity = "0.7";
+                    });
+                });
+            });
+            
+            // Profile image placeholder click handler
+            const placeholder = document.querySelector('.profile-img-placeholder');
+            placeholder.addEventListener('click', function() {
+                alert('Functionality to upload profile image would be implemented here.');
+            });
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
 </body>
 </html>
